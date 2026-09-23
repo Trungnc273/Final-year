@@ -100,6 +100,21 @@ async function main() {
       assert.ok(Math.abs(opened.heroTop) < 2 && opened.y === 0, `hero top at ${width}x${height}`);
       assert.ok(opened.heroWidth >= width - 1 && opened.shellWidth >= width - 2, `full bleed at ${width}x${height}`);
       assert.ok(opened.documentWidth <= opened.viewportWidth + 1, `horizontal overflow at ${width}x${height}`);
+      if (width <= 430) {
+        const photoCenters = await page.evaluate(() => {
+          const center = (selector) => {
+            const rect = document.querySelector(selector).getBoundingClientRect();
+            return rect.left + rect.width / 2;
+          };
+          return [
+            [center('#hero > div:nth-child(2) > div > div'), center('#hero > div:nth-child(2) > div > div > div:nth-child(2)')],
+            [center('#gate-2 > div:nth-child(2) > div > div'), center('#gate-2 > div:nth-child(2) > div > div > div:nth-child(2)')],
+          ];
+        });
+        for (const [frameCenter, photoCenter] of photoCenters) {
+          assert.ok(Math.abs(frameCenter - photoCenter) <= 1, `mobile photo alignment at ${width}x${height}`);
+        }
+      }
       if (width === 390 || width === 1440) {
         const heroText = await page.locator('#hero').textContent();
         const gate2Text = await page.locator('#gate-2').textContent();

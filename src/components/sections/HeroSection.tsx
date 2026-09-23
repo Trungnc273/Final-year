@@ -178,7 +178,7 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Photo Section: ~385px natural height, showing seated pose, gown, bouquet & surrounding stairs */}
-            <div className="relative w-full h-[385px] shrink-0 overflow-hidden pointer-events-none -mx-3.5 w-[calc(100%+28px)]">
+            <div className="relative h-[385px] shrink-0 overflow-hidden pointer-events-none -mx-3.5 w-[calc(100%+28px)]">
               <img
                 src={invitation.photos.hero}
                 alt={invitation.graduateName}

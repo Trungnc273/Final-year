@@ -410,7 +410,7 @@ export const Gate2Section: React.FC = () => {
             </div>
 
             {/* Framed Photo Section (Calibrated height: h-[265px], clear face, sash, bouquet) */}
-            <div className="relative w-full h-[265px] shrink-0 overflow-hidden pointer-events-none -mx-3 w-[calc(100%+24px)] bg-[#eef3f8]">
+            <div className="relative h-[265px] shrink-0 overflow-hidden pointer-events-none -mx-3 w-[calc(100%+24px)] bg-[#eef3f8]">
               <img decoding="async" loading="lazy"
                 src={invitation.photos.hero}
                 alt={invitation.graduateName}

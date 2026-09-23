@@ -245,7 +245,7 @@ export const OpeningCover: React.FC<OpeningCoverProps> = ({ onOpen, isOpen }) =>
             </div>
 
             {/* Top Photo Section: Proportionally filling upper ~46% (370px), with smooth fade at bottom */}
-            <div className="relative w-full h-[370px] shrink-0 overflow-hidden pointer-events-none -mx-4 -mt-2 w-[calc(100%+32px)]">
+            <div className="relative h-[370px] shrink-0 overflow-hidden pointer-events-none -mx-4 -mt-2 w-[calc(100%+32px)]">
               <img
                 src={invitation.photos.hero}
                 alt={invitation.graduateName}

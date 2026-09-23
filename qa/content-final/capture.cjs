@@ -64,6 +64,14 @@ async function main() {
       await context.close();
       console.log(`Captured content at ${width}x${height}`);
     }
+    const personalizedUrl = new URL(BASE_URL);
+    personalizedUrl.searchParams.set('to', 'Nguyễn Minh Anh');
+    const personalized = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+    await personalized.goto(personalizedUrl.toString(), { waitUntil: 'networkidle' });
+    await personalized.evaluate(() => document.fonts.ready);
+    await personalized.screenshot({ path: path.join(OUTPUT, 'opening-mobile-personalized-390x844.png') });
+    await personalized.close();
+
     const htmlPath = path.join(OUTPUT, 'CONTENT-FINAL-REVIEW.html');
     fs.writeFileSync(htmlPath, boardHtml(), 'utf8');
     const board = await browser.newPage({ viewport: { width: 1540, height: 900 } });

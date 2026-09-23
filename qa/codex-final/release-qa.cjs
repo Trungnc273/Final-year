@@ -63,6 +63,14 @@ async function main() {
       assert.equal(closed.mainInert, true);
       assert.ok(closed.cover.width >= width - 1 && closed.cover.height >= height - 1);
       assert.ok(closed.documentWidth <= closed.viewportWidth + 1);
+      if (width <= 430) {
+        const openingCenters = await page.evaluate(() => {
+          const frame = document.querySelector('.opening-cover > div:last-child > div > div').getBoundingClientRect();
+          const photo = document.querySelector('.opening-cover > div:last-child > div > div > div:nth-child(2)').getBoundingClientRect();
+          return [frame.left + frame.width / 2, photo.left + photo.width / 2];
+        });
+        assert.ok(Math.abs(openingCenters[0] - openingCenters[1]) <= 1, `opening photo alignment at ${width}x${height}`);
+      }
       assert.ok(await page.locator('aside').getByText('Nguyễn Minh Anh').filter({ visible: true }).isVisible());
       if (width === 390 || width === 1440) {
         const coverText = await page.locator('aside').textContent();

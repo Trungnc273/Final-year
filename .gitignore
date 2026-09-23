@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Local agent tooling and exploratory screenshots are not application assets.
+.agents/
+qa/baseline*.png
+qa/final-site/
+qa/gate-1/
+qa/gate-2/
+qa/codex-final/*.png
+qa/codex-final/*.html
